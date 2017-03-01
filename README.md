@@ -1,3 +1,13 @@
+### how to run
+```
+$ git clone https://github.com/k1r1n/todolist-react.git
+$ cd todolist-react
+$ npm install
+$ npm start
+```
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

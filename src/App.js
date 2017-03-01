@@ -23,7 +23,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="ui piled segment container ">
-          <h4 className="ui header">TO DO LIST ({count})</h4>
+          <h4 className="ui header">TO DO LIST <a className="ui blue circular label">{count}</a></h4>
           <List filter="boy" items={this.state.items} />
           <div className="ui middle aligned divided list fluid">
             <div className="item">
@@ -80,33 +80,30 @@ class List extends React.Component {
     if (localStorage.getItem("data")){
       list   = JSON.parse(localStorage.getItem('data')) || [];
     }
-    //
-    // const Modals = () => (
-    //
-    //   <Modal className="small"
-    //   trigger={
-    //     <Button className="ui button yellow icon" onClick={this.handleEdit.bind(todo.status)}>
-    //       <i className="edit icon"></i>
-    //     </Button>}>
-    //     <Modal.Header>Edit Todo</Modal.Header>
-    //     <Modal.Content image >
-    //       <Image wrapped size='medium' src='http://semantic-ui.com/images/avatar2/large/rachel.png' />
-    //       <Modal.Description>
-    //       <div className="ui form">
-    //         <div className="field">
-    //           <label>List</label>
-    //           <input type="text"/>
-    //         </div>
-    //         <div className="field">
-    //           <label>Description</label>
-    //           <textarea></textarea>
-    //         </div>
-    //         <button className="ui button blue">Update</button>
-    //       </div>
-    //       </Modal.Description>
-    //     </Modal.Content>
-    //   </Modal>
-    // )
+
+    const Modals = () => (
+
+      <Modal className="small"
+      trigger={
+        <Button className="ui button yellow icon">
+          <i className="edit icon"></i>
+        </Button>}>
+        <Modal.Header>Edit Todo</Modal.Header>
+        <Modal.Content >
+          <div className="ui form">
+            <div className="field">
+              <label>List</label>
+              <input type="text"/>
+            </div>
+            <div className="field">
+              <label>Description</label>
+              <textarea></textarea>
+            </div>
+            <button className="ui button blue">Update</button>
+          </div>
+        </Modal.Content>
+      </Modal>
+    )
     return (
       <div className="ui middle aligned divided list">
         {list.filter(function(todo) {
@@ -119,7 +116,7 @@ class List extends React.Component {
         }).map((item,index) => (
           <div className="item " key={item.id}>
             <div className="right floated content">
-
+              <Modals/>
               <button className="ui button red icon" onClick={this.handleRemove.bind(item,index)}><i className="trash icon"></i></button>
             </div>
             <div className="content">
@@ -137,9 +134,6 @@ class List extends React.Component {
         ))}
       </div>
     )
-  }
-  handleEdit(item){
-    console.log(item)
   }
   handleCheck(id,e){
     for(var i = 0; i < todo.length; i++) {
